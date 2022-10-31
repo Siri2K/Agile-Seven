@@ -22,10 +22,10 @@
 Develop a Procurement System
 
 # Product Backlog (Sprint #)
-- Welcome/ Product Page ()
-- Purchase Product with Warning ()
-- Adding Product to market ()
-- Contact Request Feature ()
-- User Authentication ()
-- User Profile ()
-- Credit Card link to Profile ()
+- Welcome/ Product Page (1)
+- Purchase Product with Warning (1)
+- Adding Product to market (2)
+- Contact Request Feature (2)
+- User Authentication (2)
+- User Profile (2)
+- Credit Card link to Profile (2)
