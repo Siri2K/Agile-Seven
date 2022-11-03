@@ -1,4 +1,4 @@
-package com.guiapp.server;
+package com.demo.server;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
