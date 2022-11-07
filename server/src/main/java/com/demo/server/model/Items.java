@@ -11,11 +11,11 @@ import javax.persistence.Id;
 public class Items
 {
     // Items Columns
-    private Integer quantity_in_stock;
+    private Integer quantity_on_stock;
     private String name,description;
     private Double price;
 
-    // Items Key Column
+    // Items Primary Key Column
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer product_ID;
@@ -23,10 +23,10 @@ public class Items
     // Constructors
     public Items() {}
 
-    public Items(Integer product_ID, Integer quantity_in_stock, String name, String description, Double price) 
+    public Items(Integer product_ID, Integer quantity_on_stock, String name, String description, Double price) 
     {
         this.product_ID = product_ID;
-        this.quantity_in_stock = quantity_in_stock;
+        this.quantity_on_stock = quantity_on_stock;
         this.name = name;
         this.description = description;
         this.price = price;
@@ -44,14 +44,14 @@ public class Items
         this.product_ID = product_ID;
     }
 
-    public Integer getQuantity_in_stock() 
+    public Integer getQuantity_on_stock() 
     {
-        return this.quantity_in_stock;
+        return this.quantity_on_stock;
     }
 
-    public void setQuantity_in_stock(Integer quantity_in_stock) 
+    public void setQuantity_on_stock(Integer quantity_on_stock) 
     {
-        this.quantity_in_stock = quantity_in_stock;
+        this.quantity_on_stock = quantity_on_stock;
     }
 
     public String getName() 
@@ -90,7 +90,7 @@ public class Items
     {
         return "{" +
             " product_ID='" + getProduct_ID() + "'" +
-            ", quantity_in_stock='" + getQuantity_in_stock() + "'" +
+            ", quantity_on_stock='" + getQuantity_on_stock() + "'" +
             ", name='" + getName() + "'" +
             ", description='" + getDescription() + "'" +
             ", price='" + getPrice() + "'" +
