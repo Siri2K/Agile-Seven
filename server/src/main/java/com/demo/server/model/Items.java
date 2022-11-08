@@ -18,14 +18,14 @@ public class Items
     // Items Primary Key Column
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    private Integer product_ID;
+    private Integer ID;
 
     // Constructors
     public Items() {}
 
-    public Items(Integer product_ID, Integer quantity_on_stock, String name, String description, Double price) 
+    public Items(Integer ID, Integer quantity_on_stock, String name, String description, Double price) 
     {
-        this.product_ID = product_ID;
+        this.ID = ID;
         this.quantity_on_stock = quantity_on_stock;
         this.name = name;
         this.description = description;
@@ -34,14 +34,14 @@ public class Items
     
 
     // Setters & Getters
-    public Integer getProduct_ID() 
+    public Integer getID() 
     {
-        return this.product_ID;
+        return this.ID;
     }
 
-    public void setProduct_ID(Integer product_ID) 
+    public void setID(Integer ID) 
     {
-        this.product_ID = product_ID;
+        this.ID = ID;
     }
 
     public Integer getQuantity_on_stock() 
@@ -89,7 +89,7 @@ public class Items
     public String toString() 
     {
         return "{" +
-            " product_ID='" + getProduct_ID() + "'" +
+            " ID='" + getID() + "'" +
             ", quantity_on_stock='" + getQuantity_on_stock() + "'" +
             ", name='" + getName() + "'" +
             ", description='" + getDescription() + "'" +
