@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+
+
 <head>
 <title>T7 - Procurement System</title>
 
@@ -7,6 +9,7 @@
 <link rel="icon" type="image/png" sizes="128x128" href="assets/images/logo.png">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/images/logo.png">
 </head>
+<button ng-click="myFunc()" class="button Cartbutton ">Cart</button>
 
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
@@ -16,6 +19,13 @@
 
 
 <h1><i class="fab fa-product-hunt"></i> T7: Procurement System</h1>
+<button  class="button"><a href="index.html">Home</a></button>
+<button  class="button"><a href="login_page.html">Log In</a></button>
+<button ng-click="myFunc()" class="button Sortbutton">Sort by name (A-Z)</button>
+<button ng-click="myFunc()" class="button ">Sort by price (lowest)</button>
+<button ng-click="myFunc()" class="button ">Sort by price (highest)</button>
+
+
 <h2 style="color:black;">Materials</h2>
 
 <div class="product-grid">
