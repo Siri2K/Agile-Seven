@@ -11,14 +11,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+// Set Path to : localhost:8080/index
 @Controller // Class Define as a Controller
-@RequestMapping(path = "/index")// Path: localhost:8080/index
+@RequestMapping(path = "/")
 public class ItemsController 
 {
     @Autowired // Repository that will handle the data
     private ItemsRepository ItemsRepository;
 
-    @GetMapping(path = "/all")
+    @GetMapping(path = "/index")
     public @ResponseBody Iterable <Items> getAllItems()
     {
         return ItemsRepository.findAll();
