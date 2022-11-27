@@ -1,10 +1,16 @@
-package com.demo.server.Controller;
+package com.demo.server.controller;
 
-// Import From Java Packages
+// Import Classes 
 import com.demo.server.model.Items;
-import com.demo.server.Repository.ItemsRepository;
+import com.demo.server.repository.ItemsRepository;
 
-// Imports Spring Classes
+// Imports Spring & Java Packages
+import java.util.Optional;
+import java.sql.Blob;
+import java.sql.SQLException;
+
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +25,26 @@ public class ItemsController
     @Autowired // Repository that will handle the data
     private ItemsRepository ItemsRepository;
 
+    // Get All From Database
     @GetMapping(path = "/index")
     public @ResponseBody Iterable <Items> getAllItems()
     {
         return ItemsRepository.findAll();
     }
+
+    // Get Images from Database
+    @GetMapping(path = "/image/{id}")
+    public ResponseEntity<byte[]>getImage(@PathVariable("id") Integer id) throws SQLException
+    {
+        Optional<Items> items = ItemsRepository.findbyId(id);
+        byte[] imagesBytes = null;
+
+        // Optain JPG images
+        if(items.isPresent())
+        {
+            imagesBytes = items.get().getPicture().getBytes(1,(int)items.get().getPicture().length());
+        }
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imagesBytes);
+    }
+
 }

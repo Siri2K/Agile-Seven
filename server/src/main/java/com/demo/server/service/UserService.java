@@ -1,0 +1,22 @@
+package com.demo.server.service;
+
+// Import Classes
+import com.demo.server.model.User;
+import com.demo.server.service.UserService;
+
+// Import JAva and Spring Classes
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Services;
+
+@Service
+public class UserService
+{
+    @Autowired
+    private UserRepository userRepository;
+
+    public User login(String email, String password)
+    {
+        User user = userRepository.findByEmailAndPassword(email,password);
+        return user;
+    }
+}
