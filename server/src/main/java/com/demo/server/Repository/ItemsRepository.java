@@ -1,4 +1,4 @@
-package com.demo.server.repository;
+package com.demo.server.Repository;
 
 // Import Model
 import com.demo.server.model.Items;

@@ -14,7 +14,6 @@ public class Items
     private Integer quantity_on_stock;
     private String name,description;
     private Double price;
-    private Blob picture;
 
     // Items Primary Key Column
     @Id
@@ -24,14 +23,13 @@ public class Items
     // Constructors
     public Items() {}
 
-    public Items(Integer ID, Integer quantity_on_stock, String name, String description, Double price, Blob picture) 
+    public Items(Integer ID, Integer quantity_on_stock, String name, String description, Double price) 
     {
         this.ID = ID;
         this.quantity_on_stock = quantity_on_stock;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.picture = picture;
     }
     
 
@@ -86,16 +84,6 @@ public class Items
         this.price = price;
     }
     
-    public Blob getPicture() 
-    {
-        return this.picture;
-    }
-
-    public void setPicture(Blob picture) 
-    {
-        this.picture = picture;
-    }
-    
 
     @Override
     public String toString() 
@@ -106,7 +94,6 @@ public class Items
             ", name='" + getName() + "'" +
             ", description='" + getDescription() + "'" +
             ", price='" + getPrice() + "'" +
-            ", picture='" + getPicture() +"'" +
             "}";
     }
 
