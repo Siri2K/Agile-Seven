@@ -1,5 +1,7 @@
 package com.demo.server.model;
 
+import java.sql.Blob;
+
 // Imports to Model Class
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +16,7 @@ public class Items
     private Integer quantity_on_stock;
     private String name,description;
     private Double price;
+    private Blob photo;
 
     // Items Primary Key Column
     @Id
@@ -23,13 +26,14 @@ public class Items
     // Constructors
     public Items() {}
 
-    public Items(Integer ID, Integer quantity_on_stock, String name, String description, Double price) 
+    public Items(Integer ID, Integer quantity_on_stock, String name, String description, Double price, Blob photo) 
     {
         this.ID = ID;
         this.quantity_on_stock = quantity_on_stock;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.photo = photo;
     }
     
 
@@ -82,6 +86,16 @@ public class Items
     public void setPrice(Double price) 
     {
         this.price = price;
+    }
+
+    public Blob getPhoto() 
+    { 
+        return this.photo;
+    }
+
+    public void setPhoto(Blob photo) 
+    {
+        this.photo = photo;
     }
     
 
