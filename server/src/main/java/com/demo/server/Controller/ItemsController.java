@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -36,7 +37,7 @@ public class ItemsController
     @GetMapping(path = "/image/{id}")
     public ResponseEntity<byte[]>getImage(@PathVariable("id") Integer id) throws SQLException
     {
-        Optional<Items> items = ItemsRepository.findbyId(id);
+        Optional<Items> items = ItemsRepository.findById(id);
         byte[] imagesBytes = null;
 
         // Optain JPG images

@@ -1,4 +1,5 @@
 package com.demo.server.model;
+import java.sql.Blob;
 
 // Imports to Model Class
 import javax.persistence.Entity;
