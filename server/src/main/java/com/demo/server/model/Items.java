@@ -1,8 +1,7 @@
 package com.demo.server.model;
 
+// Imports to Java and Spring Packages
 import java.sql.Blob;
-
-// Imports to Model Class
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

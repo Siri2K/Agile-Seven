@@ -4,6 +4,7 @@ package com.demo.server.repository;
 import com.demo.server.model.Items;
 
 // Import Java and Spring Packages
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +12,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ItemsRepository extends JpaRepository<Items,Integer>
 {
-    
+    @Override
+    List<Items> findAll();
 }
