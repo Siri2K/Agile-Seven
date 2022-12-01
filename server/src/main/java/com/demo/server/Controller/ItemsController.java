@@ -69,9 +69,10 @@ public class ItemsController
 
     // Return the image from the database using ResponseEntity
 	@GetMapping("image/{id}")
-	public ResponseEntity<byte[]> fromDatabaseAsResEntity(@PathVariable("id") Integer id) throws SQLException {
+	public ResponseEntity<byte[]> fromDatabaseAsResEntity(@PathVariable("id") Integer id) throws SQLException 
+    {
 
-		Optional<Items> items = ItemsRepository.findById(id);
+		Optional<Items> items = itemsRepository.findById(id);
 		byte[] imageBytes = null;
 		if (items.isPresent()) {
 

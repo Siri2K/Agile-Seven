@@ -11,7 +11,9 @@ import org.springframework.stereotype.Repository;
 // Setup Data Access
 @Repository
 public interface ItemsRepository extends JpaRepository<Items,Integer>
-{
+{    
+    List<Items> findByOrderByPrice(Double price);
+    
     @Override
     List<Items> findAll();
 }
