@@ -12,7 +12,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ItemsRepository extends JpaRepository<Items,Integer>
 {    
-    List<Items> findByOrderByPrice(Double price);
+    // Sort Price 
+    List<Items> findByOrderByPriceAsc(Double price);
+    List<Items> findByOrderByPriceDesc(Double price);
     
     @Override
     List<Items> findAll();
