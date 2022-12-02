@@ -1,53 +1,98 @@
 package com.demo.server.model;
 
-// Imports to Model Class
+// Imports to Java Class
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 // Class Generates Table Model
 @Entity
-public class Orders {
+public class Orders 
+{
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer id;
     
     private Integer user_id;
     private String created_date;
-    private int total_price;
+    private Double total_price;
 
-    public Integer getId() {
-        return id;
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    private List<OrdersItems> ordersItems;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+
+    // Constructor
+    public Orders() 
+    {
     }
-    public void setId(Integer id) {
+
+    // Set & Get Function
+    public Integer getId() 
+    {
+        return this.id;
+    }
+
+    public void setId(Integer id) 
+    {
         this.id = id;
     }
-    
-    public Integer getUser_id() {
-        return user_id;
+
+    public Integer getUserId() 
+    {
+        return this.user_id;
     }
-    public void setUser_id(Integer user_id) {
+
+    public void setUserId(Integer user_id) 
+    {
         this.user_id = user_id;
     }
-   
-    public String getCreated_date() {
-        return created_date;
+
+    public String getCreatedDate() 
+    {
+        return this.created_date;
     }
-    public void setCreated_date(String created_date) {
+
+    public void setCreatedDate(String created_date) 
+    {
         this.created_date = created_date;
     }
-   
-    public int getTotal_price() {
-        return total_price;
+
+    public Double getTotalPrice() 
+    {
+        return this.total_price;
     }
-    public void setTotal_price(int total_price) {
+
+    public void setTotalPrice(Double total_price) 
+    {
         this.total_price = total_price;
     }
 
-    @Override
-    public String toString() {
-        return "Orders [id=" + id + ", user_id=" + user_id + ", created_date=" + created_date + ", total_price="
-                + total_price + "]";
-    }  
+    public List<OrdersItems> getOrdersItems() 
+    {
+        return this.ordersItems;
+    }
+
+    public void setOrdersItems(List<OrdersItems> ordersItems) 
+    {
+        this.ordersItems = ordersItems;
+    }
+
+    public User getUser() 
+    {
+        return this.user;
+    }
+
+    public void setUser(User user) 
+    {
+        this.user = user;
+    }
 }

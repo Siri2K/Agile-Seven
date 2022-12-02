@@ -1,9 +1,17 @@
 package com.demo.server.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
+// Import Classes
 import com.demo.server.model.Orders;
+import com.demo.server.model.User;
 
-public interface OrdersRepository extends JpaRepository<Orders,Integer> {
-    
+// Import Spring and Java packages
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface OrdersRepository extends JpaRepository<Orders,Integer> 
+{
+    List<Orders> findAllByUserOrderByCreatedDateDesc(User user);
 }
