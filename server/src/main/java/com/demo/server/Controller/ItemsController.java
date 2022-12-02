@@ -28,14 +28,16 @@ public class ItemsController
 {
     private final ItemsRepository itemsRepository;
     @Autowired // Repository that will handle the data
-    public ItemsController(ItemsRepository itemsRepository) {
+    public ItemsController(ItemsRepository itemsRepository) 
+    {
         this.itemsRepository = itemsRepository;
     }
 
     @RequestMapping(
             method = RequestMethod.GET,
             produces = {"application/json"})
-    public @ResponseBody List<Items> listItems() {
+    public @ResponseBody List<Items> listItems() 
+    {
         return itemsRepository.findAll();
     }
 
@@ -43,19 +45,22 @@ public class ItemsController
     @RequestMapping(
             method = RequestMethod.POST,
             consumes = {"application/json"})
-    public @ResponseBody void addItem(@RequestBody Items item) {
+    public @ResponseBody void addItem(@RequestBody Items item) 
+    {
         itemsRepository.save(item);
     }
 
     @RequestMapping(
             method = RequestMethod.PUT,
             consumes = {"application/json"})
-    public @ResponseBody void updateItem(@RequestBody Items item) {
+    public @ResponseBody void updateItem(@RequestBody Items item) 
+    {
         itemsRepository.save(item);
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
-    public @ResponseBody void deleteItem(@RequestParam("id") int id) {
+    public @ResponseBody void deleteItem(@RequestParam("id") int id) 
+    {
         itemsRepository.deleteById(id);
     }
 
@@ -69,9 +74,10 @@ public class ItemsController
 
     // Return the image from the database using ResponseEntity
 	@GetMapping("image/{id}")
-	public ResponseEntity<byte[]> fromDatabaseAsResEntity(@PathVariable("id") Integer id) throws SQLException {
+	public ResponseEntity<byte[]> fromDatabaseAsResEntity(@PathVariable("id") Integer id) throws SQLException 
+    {
 
-		Optional<Items> items = ItemsRepository.findById(id);
+		Optional<Items> items = itemsRepository.findById(id);
 		byte[] imageBytes = null;
 		if (items.isPresent()) {
 
@@ -81,4 +87,21 @@ public class ItemsController
 
 		return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imageBytes);
 	}
+
+    // Get Items by Prices
+    @RequestMapping(
+            method = RequestMethod.GET,
+            produces = {"application/json"})
+    public @ResponseBody List<Items> listItemsAsc() 
+    {
+        return itemsRepository.findByOrderByPriceAsc();
+    }
+
+    @RequestMapping(
+            method = RequestMethod.GET,
+            produces = {"application/json"})
+    public @ResponseBody List<Items> findByOrderByPriceDesc() 
+    {
+        return itemsRepository.findAll();
+    }
 }

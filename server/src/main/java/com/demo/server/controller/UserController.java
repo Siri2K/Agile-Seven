@@ -43,14 +43,11 @@ public class UserController
      System.out.print(oauthUser);
      if(Objects.nonNull(oauthUser))
      {
-  
-     return "redirect:/";
-    
-    
-     } else {
-     return "redirect:/login";
-    
-    
+         return "redirect:/";
+     } 
+     else 
+     {
+        return "redirect:/login";
      }
  
 }
@@ -58,8 +55,6 @@ public class UserController
     @RequestMapping(value = {"/logout"}, method = RequestMethod.POST)
     public String logoutDo(HttpServletRequest request,HttpServletResponse response)
     {
-    
-  
         return "redirect:/login";
     } 
 }
