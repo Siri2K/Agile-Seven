@@ -7,15 +7,29 @@
 <link rel="icon" type="image/png" sizes="128x128" href="assets/images/logo.png">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/images/logo.png">
 </head>
+<button class="button Cartbutton"><a href="login_page.html"></a>Cart</button>
 
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <script  type="text/javascript" src="product.js"> </script>
 <link rel="stylesheet" type="text/css" href="styles.css">
 
-
-
 <h1><i class="fab fa-product-hunt"></i> T7: Procurement System</h1>
+<button class="button"><a href="index.html">Home</a></button>
+<button class="button"><a href="login_page.html">Log In</a></button>
+<button ng-click="myFunc()" class="button Sortbutton">Sort by name (A-Z)</button>
+<button ng-click="myFunc()" class="button ">Sort by price (lowest)</button>
+<button ng-click="myFunc()" class="button ">Sort by price (highest)</button>
+
+<p id="Warning"></p>
+<script>
+function Expensive() {
+  //var txt;
+  if (confirm("This Item is expensive!"));
+ // document.getElementById("Warning").innerHTML = txt;
+}
+</script>
+
 <h2 style="color:black;">Materials</h2>
 
 <div class="product-grid">
@@ -55,7 +69,7 @@
 <img src="assets/images/Item_5.jpg" />
 <h2>Diamond</h2>
 <p> $5000.00 <br> Jewelery</p>
-<button ng-click="myFunc()">Buy</button>
+<button onclick="Expensive()">Buy</button>
 <p>Stock: 4</p>
 </section>
 
@@ -100,3 +114,4 @@
 </section>
 </body>
 </html>
+
