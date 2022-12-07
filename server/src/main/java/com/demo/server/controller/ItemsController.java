@@ -4,104 +4,105 @@ package com.demo.server.controller;
 import com.demo.server.model.Items;
 import com.demo.server.repository.ItemsRepository;
 
+import java.io.IOException;
 // Imports Spring and Java Classes
-import java.sql.SQLException;
 import java.util.Optional;
 import java.util.List;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.MediaType;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-// Set Path to : localhost:8080/index
+// Set Path to : localhost:8080/items
 @Controller // Class Define as a Controller
-@RequestMapping(path = "/")
 public class ItemsController 
 {
     private final ItemsRepository itemsRepository;
+
     @Autowired // Repository that will handle the data
     public ItemsController(ItemsRepository itemsRepository) 
     {
         this.itemsRepository = itemsRepository;
     }
 
-    @RequestMapping(
-            method = RequestMethod.GET,
-            produces = {"application/json"})
+    @GetMapping(path = "/items")
     public @ResponseBody List<Items> listItems() 
     {
         return itemsRepository.findAll();
     }
 
+    @GetMapping(path = "/items/{id}")
+    public @ResponseBody Optional<Items> findItems(@PathVariable("id") Integer id) 
+    {
+        return itemsRepository.findById(id);
+    }
 
-    @RequestMapping(
-            method = RequestMethod.POST,
-            consumes = {"application/json"})
+    
+    @PostMapping(path = "/items")
     public @ResponseBody void addItem(@RequestBody Items item) 
     {
         itemsRepository.save(item);
     }
 
-    @RequestMapping(
-            method = RequestMethod.PUT,
-            consumes = {"application/json"})
-    public @ResponseBody void updateItem(@RequestBody Items item) 
-    {
-        itemsRepository.save(item);
-    }
-
-    @RequestMapping(method = RequestMethod.DELETE)
+    @DeleteMapping(path = "/items/{id}")
     public @ResponseBody void deleteItem(@RequestParam("id") int id) 
     {
         itemsRepository.deleteById(id);
     }
+    
 
-    /*
-    @GetMapping(path = "/index")
-    public @ResponseBody Iterable <Items> getAllItems()
+    @GetMapping("items/image/{id}")
+	public void showItemsImage(@PathVariable("id") Integer Id, HttpServletResponse response,Optional<Items> item) 
+    throws ServletException, IOException
     {
-        return ItemsRepository.findAll();
-    }
-    */
-
-    // Return the image from the database using ResponseEntity
-	@GetMapping("image/{id}")
-	public ResponseEntity<byte[]> fromDatabaseAsResEntity(@PathVariable("id") Integer id) throws SQLException 
-    {
-
-		Optional<Items> items = itemsRepository.findById(id);
-		byte[] imageBytes = null;
-		if (items.isPresent()) {
-
-			imageBytes = items.get().getPhoto().getBytes(1,
-					(int) items.get().getPhoto().length());
-		}
-
-		return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imageBytes);
-	}
-
-    // Get Items by Prices
-    @RequestMapping(
-            method = RequestMethod.GET,
-            produces = {"application/json"})
-    public @ResponseBody List<Items> listItemsAsc() 
-    {
-        return itemsRepository.findByOrderByPriceAsc();
+        item = itemsRepository.findById(Id);
+        response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
+        response.getOutputStream().write(item.get().getPicture());
+        response.getOutputStream().close();
     }
 
-    @RequestMapping(
-            method = RequestMethod.GET,
-            produces = {"application/json"})
-    public @ResponseBody List<Items> findByOrderByPriceDesc() 
+    @GetMapping("items/details")
+	public String showItemsDetails(@RequestParam("id") Integer Id, Optional<Items> item,Model model) 
     {
-        return itemsRepository.findAll();
+        item = itemsRepository.findById(Id);
+        
+        if(item.isPresent())
+        {
+            model.addAttribute("id", item.get().getId());
+            model.addAttribute("name", item.get().getName());
+            model.addAttribute("description", item.get().getDescription());
+            model.addAttribute("price", item.get().getPrice());
+            model.addAttribute("quantity_on_stock", item.get().getQuantity_on_stock());
+            return "details/{id}";
+        }
+        return "redirect:/items";
     }
+
+    // Display Sorted Price
+    @GetMapping("/items/asc")
+    public @ResponseBody List<Items> listItemsAsc()
+    {
+        // Choose Sort Location
+        Sort sort = Sort.by("price").ascending();
+        return itemsRepository.findAll(sort);
+    }
+
+    @GetMapping("/items/desc")
+    public @ResponseBody List<Items> listItemsDesc()
+    {
+        // Choose Sort Location
+        Sort sort = Sort.by("price").descending();
+        return itemsRepository.findAll(sort);
+    }
+    
 }
