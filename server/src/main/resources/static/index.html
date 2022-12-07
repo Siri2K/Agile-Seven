@@ -4,16 +4,30 @@
 <!--Icon-->
 <link rel="icon" type="image/png" sizes="128x128" href="assets/images/logo.png">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/images/logo.png">
-<style>body{background:DodgerBlue}h1{color:#000;text-align:center;font-family:Arial,cursive;font-size:12vh}.product-grid{display:grid;grid-auto-rows:300px;grid-template-columns:repeat(auto-fill,200px);grid-gap:20px;text-align:center}.product-bar img{height:100px;width:100%}.product-bar{position:relative;background:linear-gradient(45deg,Teal,Teal);cursor:pointer;border:1px solid white;overflow:hidden;height:300px}</style><link rel="stylesheet" href="styles.87ecb05ca9bc7bc2.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.87ecb05ca9bc7bc2.css"></noscript></head>
+<style>body{background:#6abadeba}h1{color:#000;text-align:center;font-family:Arial,cursive;font-size:12vh}.product-grid{display:grid;grid-auto-rows:300px;grid-template-columns:repeat(auto-fill,200px);grid-gap:20px;text-align:center}.product-bar img{height:100px;width:100%}.product-bar{position:relative;background:linear-gradient(45deg,#38a7bb,#38a7bb);cursor:pointer;border:1px solid white;overflow:hidden;height:300px}.button{background-color:#38a7bb;border:none;color:#000;padding:10px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;margin:2px;cursor:pointer}.Sortbutton{margin-left:1220px}.Cartbutton{margin-left:1820px}a{width:100%;line-height:2em;text-align:center;text-decoration:none;color:#000}.button:hover{background-color:#6abadeba}</style><link rel="stylesheet" href="styles.350ce9a459ed53d3.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.350ce9a459ed53d3.css"></noscript></head>
+<body><button class="button Cartbutton"><a href="login_page.html"></a>Cart</button>
 
-<body>
+
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <script type="text/javascript" src="product.js"> </script>
 <link rel="stylesheet" type="text/css" href="styles.css">
 
-
-
 <h1><i class="fab fa-product-hunt"></i> T7: Procurement System</h1>
+<button class="button"><a href="index.html">Home</a></button>
+<button class="button"><a href="login_page.html">Log In</a></button>
+<button ng-click="myFunc()" class="button Sortbutton">Sort by name (A-Z)</button>
+<button ng-click="myFunc()" class="button ">Sort by price (lowest)</button>
+<button ng-click="myFunc()" class="button ">Sort by price (highest)</button>
+
+<p id="Warning"></p>
+<script>
+function Expensive() {
+  //var txt;
+  if (confirm("This Item is expensive!"));
+ // document.getElementById("Warning").innerHTML = txt;
+}
+</script>
+
 <h2 style="color:black;">Materials</h2>
 
 <div class="product-grid">
@@ -53,7 +67,7 @@
 <img src="assets/images/Item_5.jpg">
 <h2>Diamond</h2>
 <p> $5000.00 <br> Jewelery</p>
-<button ng-click="myFunc()">Buy</button>
+<button onclick="Expensive()">Buy</button>
 <p>Stock: 4</p>
 </section>
 
@@ -96,6 +110,7 @@
 <button ng-click="myFunc()">Buy</button>
 <p>Stock: 1</p>
 </section>
-<script src="runtime.4ee665ecba5eef43.js" type="module"></script><script src="polyfills.ab099a83b9fb898a.js" type="module"></script><script src="main.0461f90d9a1c9ec0.js" type="module"></script>
+<script src="runtime.4ee665ecba5eef43.js" type="module"></script><script src="polyfills.ab099a83b9fb898a.js" type="module"></script><script src="main.5795e2bf74663f95.js" type="module"></script>
+
 
 </div></body></html>
