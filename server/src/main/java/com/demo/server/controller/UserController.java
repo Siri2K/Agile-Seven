@@ -43,10 +43,12 @@ public class UserController
      System.out.print(oauthUser);
      if(Objects.nonNull(oauthUser))
      {
+        System.out.println("Success");
          return "redirect:/";
      } 
      else 
      {
+        System.out.println("Failed");
         return "redirect:/login";
      }
  
