@@ -11,86 +11,86 @@ import javax.persistence.Id;
 public class User 
 {
     // Columns 
-    private String First_Name, Last_name, Email, Role, Password;
+    private String first_name, last_name, email, role, password;
 
     // Primary Key
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    private Integer ID;
+    private Integer id;
 
     // Constructor
     public User() {}
 
 
-    public User(Integer ID, String First_Name, String Last_name, String Email, String Role, String Password) 
+    public User(Integer id, String first_name, String last_name, String email, String role, String password) 
     {
-        this.ID = ID;
-        this.First_Name = First_Name;
-        this.Last_name = Last_name;
-        this.Email = Email;
-        this.Role = Role;
-        this.Password = Password;
+        this.id = id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email = email;
+        this.role = role;
+        this.password = password;
     }
 
     // Database Columns
     public Integer getID() 
     {
-        return this.ID;
+        return this.id;
     }
 
-    public void setID(Integer ID) 
+    public void setID(Integer id) 
     {
-        this.ID = ID;
+        this.id = id;
     }
 
     public String getFirst_Name() 
     {
-        return this.First_Name;
+        return this.first_name;
     }
 
-    public void setFirst_Name(String First_Name) 
+    public void setFirst_Name(String first_name) 
     {
-        this.First_Name = First_Name;
+        this.first_name = first_name;
     }
 
     public String getLast_name() 
     {
-        return this.Last_name;
+        return this.last_name;
     }
 
-    public void setLast_name(String Last_name) 
+    public void setLast_name(String last_name) 
     {
-        this.Last_name = Last_name;
+        this.last_name = last_name;
     }
 
     public String getEmail() 
     {
-        return this.Email;
+        return this.email;
     }
 
-    public void setEmail(String Email) 
+    public void setEmail(String email) 
     {
-        this.Email = Email;
+        this.email = email;
     }
 
     public String getRole() 
     {
-        return this.Role;
+        return this.role;
     }
 
-    public void setRole(String Role) 
+    public void setRole(String role) 
     {
-        this.Role = Role;
+        this.role = role;
     }
 
     public String getPassword() 
     {
-        return this.Password;
+        return this.password;
     }
 
-    public void setPassword(String Password) 
+    public void setPassword(String password) 
     {
-        this.Password = Password;
+        this.password = password;
     }
 
 
@@ -98,12 +98,12 @@ public class User
     public String toString() 
     {
         return "{" +
-            " First_Name='" + getFirst_Name() + "'" +
-            ", Last_name='" + getLast_name() + "'" +
-            ", Email='" + getEmail() + "'" +
-            ", Role='" + getRole() + "'" +
-            ", Password='" + getPassword() + "'" +
-            ", ID='" + getID() + "'" +
+            " first_name='" + getFirst_Name() + "'" +
+            ", last_name='" + getLast_name() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", role='" + getRole() + "'" +
+            ", password='" + getPassword() + "'" +
+            ", id='" + getID() + "'" +
             "}";
     }
     

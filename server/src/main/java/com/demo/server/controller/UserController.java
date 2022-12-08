@@ -26,16 +26,17 @@ public class UserController
     private UserService userService;
  
                                   
-    @GetMapping("/login")
-          
-    public ModelAndView login() {
+    @GetMapping("/login_page")
+    public ModelAndView login() 
+    {
      ModelAndView mav = new ModelAndView("login");
         mav.addObject("user", new User());
         return mav;
     }
  
-    @PostMapping("/login")
-    public String login(@ModelAttribute("user") User user ) {
+    @PostMapping("/login_page")
+    public String login(@ModelAttribute("user") User user ) 
+    {
     
      User oauthUser = userService.login(user.getEmail(), user.getPassword());
     
@@ -49,7 +50,7 @@ public class UserController
      else 
      {
         System.out.println("Failed");
-        return "redirect:/login";
+        return "redirect:/login_page";
      }
  
 }
@@ -57,6 +58,6 @@ public class UserController
     @RequestMapping(value = {"/logout"}, method = RequestMethod.POST)
     public String logoutDo(HttpServletRequest request,HttpServletResponse response)
     {
-        return "redirect:/login";
+        return "redirect:/login_page";
     } 
 }

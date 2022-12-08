@@ -1,11 +1,11 @@
 package com.demo.server.model;
 
 // Imports to Java and Spring Packages
-import java.sql.Blob;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 // Class Generates Table Model
 @Entity 
@@ -15,36 +15,39 @@ public class Items
     private Integer quantity_on_stock;
     private String name,description;
     private Double price;
-    private Blob photo;
+
+    // Items Image Column
+    @Lob
+    private byte[] picture;
 
     // Items Primary Key Column
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    private Integer ID;
+    private Integer id;
 
     // Constructors
     public Items() {}
 
-    public Items(Integer ID, Integer quantity_on_stock, String name, String description, Double price, Blob photo) 
+    public Items(Integer id, Integer quantity_on_stock, String name, String description, Double price, byte[] picture) 
     {
-        this.ID = ID;
+        this.id = id;
         this.quantity_on_stock = quantity_on_stock;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.photo = photo;
+        this.picture = picture;
     }
     
 
     // Setters & Getters
-    public Integer getID() 
+    public Integer getId() 
     {
-        return this.ID;
+        return this.id;
     }
 
-    public void setID(Integer ID) 
+    public void setId(Integer id) 
     {
-        this.ID = ID;
+        this.id = id;
     }
 
     public Integer getQuantity_on_stock() 
@@ -87,27 +90,29 @@ public class Items
         this.price = price;
     }
 
-    public Blob getPhoto() 
+    public byte[] getPicture() 
     { 
-        return this.photo;
+        return this.picture;
     }
 
-    public void setPhoto(Blob photo) 
+    public void setPicture(byte[] picture) 
     {
-        this.photo = photo;
+        this.picture = picture;
     }
-    
+
 
     @Override
     public String toString() 
     {
         return "{" +
-            " ID='" + getID() + "'" +
+            " id='" + getId() + "'" +    
             ", quantity_on_stock='" + getQuantity_on_stock() + "'" +
             ", name='" + getName() + "'" +
             ", description='" + getDescription() + "'" +
             ", price='" + getPrice() + "'" +
+            ", picture='" + getPicture() + "'" +
             "}";
     }
+
 
 }
