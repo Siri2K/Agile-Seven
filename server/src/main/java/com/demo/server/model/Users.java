@@ -5,10 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 // Class Generates Table Model
 @Entity 
-public class User 
+@Table(name = "users")
+public class Users 
 {
     // Columns 
     private String first_name, last_name, email, role, password;
@@ -19,10 +21,10 @@ public class User
     private Integer id;
 
     // Constructor
-    public User() {}
+    public Users() {}
 
 
-    public User(Integer id, String first_name, String last_name, String email, String role, String password) 
+    public Users(Integer id, String first_name, String last_name, String email, String role, String password) 
     {
         this.id = id;
         this.first_name = first_name;

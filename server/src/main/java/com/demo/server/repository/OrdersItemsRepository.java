@@ -1,9 +1,14 @@
 package com.demo.server.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
+// Import Classes
 import com.demo.server.model.OrdersItems;
 
-public interface OrdersItemsRepository extends JpaRepository<OrdersItems,Integer> {
+// Import Spring and Java Packages
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface OrdersItemsRepository extends JpaRepository<OrdersItems,Integer> 
+{
     
 }
