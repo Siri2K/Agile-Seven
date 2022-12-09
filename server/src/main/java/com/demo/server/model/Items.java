@@ -6,9 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.Table;
 
 // Class Generates Table Model
-@Entity 
+@Entity
+@Table(name = "items")
 public class Items
 {
     // Items Columns
