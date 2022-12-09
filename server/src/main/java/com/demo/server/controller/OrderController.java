@@ -2,9 +2,9 @@ package com.demo.server.controller;
 
 // Import Classes
 import com.demo.server.service.OrderService;
-import com.demo.server.service.UserService;
+import com.demo.server.service.UsersService;
 import com.demo.server.common.ApiResponse;
-import com.demo.server.model.User;
+import com.demo.server.model.Users;
 import com.demo.server.model.Orders;
 
 // Import Java and Spring Packages
@@ -29,13 +29,13 @@ public class OrderController
     private OrderService orderService;
 
     @Autowired
-    private UserService userService;
+    private UsersService userService;
 
     // Place Order
     @PostMapping("/add")
-    public ResponseEntity<ApiResponse> placeOrder(User user)
+    public ResponseEntity<ApiResponse> placeOrder(Users user)
     {   
-        User oauthUser = userService.login(user.getEmail(), user.getPassword());
+        Users oauthUser = userService.login(user.getEmail(), user.getPassword());
 
         if(Objects.nonNull(oauthUser))
         {
@@ -47,9 +47,9 @@ public class OrderController
 
     // Get all Order
     @GetMapping("/")
-    public ResponseEntity<List<Orders>> getAllOrder(User user)
+    public ResponseEntity<List<Orders>> getAllOrder(Users user)
     {   
-        User oauthUser = userService.login(user.getEmail(), user.getPassword());
+        Users oauthUser = userService.login(user.getEmail(), user.getPassword());
 
         if(Objects.nonNull(oauthUser))
         {
@@ -61,9 +61,9 @@ public class OrderController
 
     // Get Specific Order
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getOrderbyId(@PathVariable("id") Integer id, User user)
+    public ResponseEntity<Object> getOrderbyId(@PathVariable("id") Integer id, Users user)
     {   
-        User oauthUser = userService.login(user.getEmail(), user.getPassword());
+        Users oauthUser = userService.login(user.getEmail(), user.getPassword());
 
         if(Objects.nonNull(oauthUser))
         {
@@ -75,4 +75,5 @@ public class OrderController
             return new ResponseEntity<>(new Exception().getMessage(), HttpStatus.NOT_FOUND);
         }
     }
+    
 }

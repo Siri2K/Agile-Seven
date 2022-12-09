@@ -10,9 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 // Class Generates Table Model
 @Entity
+@Table(name = "orders")
 public class Orders 
 {
     @Id
@@ -27,8 +29,8 @@ public class Orders
     private List<OrdersItems> ordersItems;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Users user;
 
     // Constructor
     public Orders() 
@@ -86,12 +88,12 @@ public class Orders
         this.ordersItems = ordersItems;
     }
 
-    public User getUser() 
+    public Users getUser() 
     {
         return this.user;
     }
 
-    public void setUser(User user) 
+    public void setUser(Users user) 
     {
         this.user = user;
     }

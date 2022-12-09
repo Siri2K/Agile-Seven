@@ -4,7 +4,7 @@ package com.demo.server.service;
 import com.demo.server.repository.OrdersRepository;
 import com.demo.server.model.Orders;
 import com.demo.server.model.OrdersItems;
-import com.demo.server.model.User;
+import com.demo.server.model.Users;
 import com.demo.server.repository.OrdersItemsRepository;
 
 // Import Java and Spring Package
@@ -17,6 +17,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 @Transactional
@@ -28,7 +29,7 @@ public class OrderService
     @Autowired
     OrdersItemsRepository ordersItemsRepository;
 
-    public void placeOrder(User user)
+    public void placeOrder(Users user)
     {
         // Create New Order and Save it
         Orders newOrder = new Orders();
@@ -39,9 +40,10 @@ public class OrderService
         ordersRepository.save(newOrder);
     }
 
-    public List<Orders> listOrders(User user)
+    public List<Orders> listOrders(@PathVariable("created_date") Users user)
     {
-        return ordersRepository.findAllByUserOrderByCreatedDateDesc(user);
+        return ordersRepository.findAllByUserOrderByCreated_dateDesc(user);
+        
     }
 
     public Orders getOrder(Integer orderId)

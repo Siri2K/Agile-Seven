@@ -11,14 +11,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 // Class Generates Table Model
 @Entity
+@Table(name = "ordersitems")
 public class OrdersItems 
 {
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    private Integer order_item_id;
+    private Integer ordered_item_id;
     
     private Integer product_id; 
     private Integer order_id;
@@ -27,11 +29,11 @@ public class OrdersItems
     private double price;
 
     @ManyToOne
-    @JoinColumn(name = "order_id", referencedColumnName = "id")
+    @JoinColumn(name = "order_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Orders order;
 
     @OneToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    @JoinColumn(name = "product_id", referencedColumnName = "id",insertable = false, updatable = false)
     private Items items;
 
     // Constructor
@@ -50,14 +52,14 @@ public class OrdersItems
     }
 
     // Set & Get 
-    public Integer getOrderItemId() 
+    public Integer getOrderedItemId() 
     {
-        return this.order_item_id;
+        return this.ordered_item_id;
     }
 
-    public void setOrderItemId(Integer order_item_id) 
+    public void setOrderedItemId(Integer ordered_item_id) 
     {
-        this.order_item_id = order_item_id;
+        this.ordered_item_id = ordered_item_id;
     }
 
     public Integer getProductId() 

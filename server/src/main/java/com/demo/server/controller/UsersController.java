@@ -1,8 +1,8 @@
 package com.demo.server.controller;
 
 // Import Classes
-import com.demo.server.model.User;
-import com.demo.server.service.UserService;
+import com.demo.server.model.Users;
+import com.demo.server.service.UsersService;
 
 // Import Java & Spring Packages
 import java.util.Objects;
@@ -20,25 +20,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class UserController 
+public class UsersController 
 {
     @Autowired
-    private UserService userService;
+    private UsersService userService;
  
                                   
     @GetMapping("/login_page")
     public ModelAndView login() 
     {
      ModelAndView mav = new ModelAndView("login");
-        mav.addObject("user", new User());
+        mav.addObject("user", new Users());
         return mav;
     }
  
     @PostMapping("/login_page")
-    public String login(@ModelAttribute("user") User user ) 
+    public String login(@ModelAttribute("user") Users user ) 
     {
     
-     User oauthUser = userService.login(user.getEmail(), user.getPassword());
+     Users oauthUser = userService.login(user.getEmail(), user.getPassword());
     
  
      System.out.print(oauthUser);
