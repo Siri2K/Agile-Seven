@@ -4,6 +4,7 @@ package com.demo.server.controller;
 import com.demo.server.model.Users;
 import com.demo.server.service.UsersService;
 
+import java.util.Map;
 // Import Java & Spring Packages
 import java.util.Objects;
  
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,7 +27,14 @@ public class UsersController
     @Autowired
     private UsersService userService;
  
-                                  
+    @PostMapping("/login")
+    public void login(@RequestBody Map<String, String> requestBody) {
+      String email = requestBody.get("email");
+      String password = requestBody.get("password");
+  
+      // do something with the email and password
+    }
+                                
     @GetMapping("/login_page")
     public ModelAndView login() 
     {
