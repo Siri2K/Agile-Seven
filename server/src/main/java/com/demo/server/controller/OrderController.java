@@ -15,65 +15,49 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
-@RequestMapping("/order")
 public class OrderController 
 {
     @Autowired
     private OrderService orderService;
 
+    /* 
     @Autowired
     private UsersService userService;
+    */
 
-    // Place Order
-    @PostMapping("/add")
-    public ResponseEntity<ApiResponse> placeOrder(Users user)
-    {   
-        Users oauthUser = userService.login(user.getEmail(), user.getPassword());
-
-        if(Objects.nonNull(oauthUser))
-        {
-            orderService.placeOrder(user);
-            return new ResponseEntity<>(new ApiResponse(true, "Order has been placed"), HttpStatus.CREATED);
-        } 
-        return null;
+    @Autowired // Repository that will handle the data
+    public OrderController(OrderService orderService) 
+    {
+        this.orderService = orderService;
     }
 
-    // Get all Order
-    @GetMapping("/")
-    public ResponseEntity<List<Orders>> getAllOrder(Users user)
-    {   
-        Users oauthUser = userService.login(user.getEmail(), user.getPassword());
-
-        if(Objects.nonNull(oauthUser))
-        {
-            List<Orders> ordersDTOList = orderService.listOrders(user);
-            return new ResponseEntity<>(ordersDTOList,HttpStatus.OK);
-        } 
-        return null;
+    @GetMapping(path = "/order")
+    // public String listOrders(Model model)
+    public @ResponseBody Iterable<Orders> listOrders()
+    {
+        /* 
+        model.addAttribute("allOrders", orderService.findAll());
+        return "order";
+        */
+        return orderService.findAll();
     }
 
-    // Get Specific Order
-    @GetMapping("/{id}")
-    public ResponseEntity<Object> getOrderbyId(@PathVariable("id") Integer id, Users user)
-    {   
-        Users oauthUser = userService.login(user.getEmail(), user.getPassword());
-
-        if(Objects.nonNull(oauthUser))
-        {
-            Orders order = orderService.getOrder(id);
-            return new ResponseEntity<>(order,HttpStatus.OK);
-        }
-        else
-        {
-            return new ResponseEntity<>(new Exception().getMessage(), HttpStatus.NOT_FOUND);
-        }
+    /* 
+    @GetMapping(path = "/order/delete/{id}")
+    public String deleteOrder(@PathVariable(value = "id") Integer id)
+    {
+        orderService.deleteById(id);
+        return "redirect:/";
     }
+    */
     
 }
