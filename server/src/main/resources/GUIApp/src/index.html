@@ -17,101 +17,43 @@
 <h1><i class="fab fa-product-hunt"></i> T7: Procurement System</h1>
 <button class="button"><a href="index.html">Home</a></button>
 <button class="button"><a href="login_page.html">Log In</a></button>
-<button ng-click="myFunc()" class="button Sortbutton">Sort by name (A-Z)</button>
-<button ng-click="myFunc()" class="button ">Sort by price (lowest)</button>
-<button ng-click="myFunc()" class="button ">Sort by price (highest)</button>
+
+
+<button onclick="myFunc()" class="button Sortbutton">Sort by name (A-Z)</button>
+<button onclick="myFunc()" class="button ">Sort by price (lowest)</button>
+<button onclick="th:href = '@{/price_desc}'" class="button" >Sort by price (highest)</button>
+
 
 <p id="Warning"></p>
 <script>
-function Expensive() {
-  //var txt;
-  if (confirm("This Item is expensive!"));
- // document.getElementById("Warning").innerHTML = txt;
+function Expensive()
+{
+  if (confirm("This Item is EXPENSIVE!\nAre you sure you want to buy this item?"));
+}
+function BuyingMessage(price, stock)
+{
+    if(price < 5000)
+    {
+      if (confirm("Are you sure you want to buy this item?"))stock--;
+    }
+    else if(confirm("This Item is expensive!\nAre you sure you want to buy this item?")) stock--;
 }
 </script>
 
 <h2 style="color:black;">Materials</h2>
 
+
 <div class="product-grid">
-<section class="product-bar" ng-repeat="x in products">
-<img src="assets/images/Item_1.jpg" />
-<h2>Push-Button</h2>
-<p> $1.99 <br> A basic push button</p>
-<button ng-click="myFunc()">Buy</button>
-<p>Stock: 5</p>
-</section>
 
-<section class="product-bar" ng-repeat="x in products">
-<img src="assets/images/Item_2.jpg" />
-<h2>Wood log 4x4x80</h2>
-<p> $75.99 <br> Basic log wood</p>
-<button ng-click="myFunc()">Buy</button>
-<p>Stock: 3</p>
-</section>
+  <section class = "product-bar" th:each = item:${allItems}>
+    <img th:src = "@{${'/' + item.getId()}}"/>
+    <h2 th:text ="${item.getName()}"></h2>
+    <p th:text ="${item.getPrice()}"> <br th:text ="${item.getDescription()}"></p>
+    <button ng-click="BuyingMessage(item.price, item.quantity_on_stock)">Buy</button>
+    <p th:text ="${item.getQuantity_on_stock()}">in Stock</p>
+  </section>
 
-<section class="product-bar" ng-repeat="x in products">
-<img src="assets/images/Item_3.jpg" />
-<h2>Toilet</h2>
-<p> $149.99 <br> To seat and read comics</p>
-<button ng-click="myFunc()">Buy</button>
-<p>Stock: 3</p>
-</section>
-
-<section class="product-bar" ng-repeat="x in products">
-<img src="assets/images/Item_4.jpg" />
-<h2>Coper wire</h2>
-<p> $745.99 <br> To link connection</p>
-<button ng-click="myFunc()">Buy</button>
-<p>Stock: 4</p>
-</section>
-
-<section class="product-bar" ng-repeat="x in products">
-<img src="assets/images/Item_5.jpg" />
-<h2>Diamond</h2>
-<p> $5000.00 <br> Jewelery</p>
-<button onclick="Expensive()">Buy</button>
-<p>Stock: 4</p>
-</section>
-
-<section class="product-bar" ng-repeat="x in products">
-<img src="assets/images/Item_6.jpg" />
-<h2>Xbox controller</h2>
-<p> $75.99 <br> Controller for Xbox</p>
-<button ng-click="myFunc()">Buy</button>
-<p>Stock: 1</p>
-</section>
-
-<section class="product-bar" ng-repeat="x in products">
-<img src="assets/images/Item_7.jpg" />
-<h2>White Brick 10pcs</h2>
-<p> $49.99 <br> For Wall</p>
-<button ng-click="myFunc()">Buy</button>
-<p>Stock: 1</p>
-</section>
-
-<section class="product-bar" ng-repeat="x in products">
-<img src="assets/images/Item_8.jpg" />
-<h2>Gun powder</h2>
-<p> $149.99 <br> Material to make a bullet</p>
-<button ng-click="myFunc()">Buy</button>
-<p>Stock: 2</p>
-</section>
-
-<section class="product-bar" ng-repeat="x in products">
-<img src="assets/images/Item_9.jpg" />
-<h2>Mustard</h2>
-<p> $7.99 <br> Condement</p>
-<button ng-click="myFunc()">Buy</button>
-<p>Stock: 2</p>
-</section>
-
-<section class="product-bar" ng-repeat="x in products">
-<img src="assets/images/Item_10.jpg" />
-<h2>Headphone</h2>
-<p> $129.99 <br> Wireless Headphone to listen music</p>
-<button ng-click="myFunc()">Buy</button>
-<p>Stock: 1</p>
-</section>
+</div>
 </body>
 </html>
 
