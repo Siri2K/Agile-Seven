@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
-@RequestMapping("/order")
 public class OrderController 
 {
     @Autowired
@@ -41,19 +40,24 @@ public class OrderController
         this.orderService = orderService;
     }
 
-    @GetMapping(path = "/")
-    public String listOrders(Model model)
+    @GetMapping(path = "/order")
+    // public String listOrders(Model model)
+    public @ResponseBody Iterable<Orders> listOrders()
     {
+        /* 
         model.addAttribute("allOrders", orderService.findAll());
-        return "order";   
+        return "order";
+        */
+        return orderService.findAll();
     }
 
+    /* 
     @GetMapping(path = "/order/delete/{id}")
     public String deleteOrder(@PathVariable(value = "id") Integer id)
     {
         orderService.deleteById(id);
         return "redirect:/";
     }
-    
+    */
     
 }
