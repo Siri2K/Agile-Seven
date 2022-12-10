@@ -1,62 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>T7 - Order Confirmation Page</title>
+<title>T7 - Procurement System</title>
 
 <!--Icon-->
 <link rel="icon" type="image/png" sizes="128x128" href="assets/images/logo.png">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/images/logo.png">
 </head>
+<button class="button Cartbutton"><a href="login_page.html"></a>Cart</button>
 
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <script  type="text/javascript" src="product.js"> </script>
 <link rel="stylesheet" type="text/css" href="styles.css">
 
-<h1><i class="fab fa-product-hunt"></i> T7: Order Confirmation Page</h1>
+<h1><i class="fab fa-product-hunt"></i> T7: Procurement System</h1>
+<button class="button"><a href="index.html">Home</a></button>
+<button class="button"><a href="login_page.html">Log In</a></button>
 
+
+<button onclick="myFunc()" class="button Sortbutton">Sort by name (A-Z)</button>
+<button onclick="myFunc()" class="button ">Sort by price (lowest)</button>
+<button onclick="th:href = '@{/price_desc}'" class="button" >Sort by price (highest)</button>
+
+
+<p id="Warning"></p>
 <script>
-function Expensive() {
-  if (confirm("This item is EXPENSIVE!.\Do you still want to buy this item?"));
+function Expensive()
+{
+  if (confirm("This Item is EXPENSIVE!\nAre you sure you want to buy this item?"));
 }
-
-function BuyingItem() {
-  if (confirm("Are sure you want to processed with this purchase?"));
+function BuyingMessage(price, stock)
+{
+    if(price < 5000)
+    {
+      if (confirm("Are you sure you want to buy this item?"))stock--;
+    }
+    else if(confirm("This Item is expensive!\nAre you sure you want to buy this item?")) stock--;
 }
 </script>
 
-<h2 style="color:black;">Review your order below and click 'Place Order' to place your order</h2>
+<h2 style="color:black;">Materials</h2>
 
 
 <div class="product-grid">
-<section class="product-bar" ng-repeat="x in products">
-<img src="assets/images/item1.jpg" />
-<h2>headsets</h2>
-<p> $1000 <br></p>
 
-<p>Quantity: 1</p>
-</section>
+  <section class = "product-bar" th:each = item:${allItems}>
+    <img th:src = "@{${'/' + item.getId()}}"/>
+    <h2 th:text ="${item.getName()}"></h2>
+    <p th:text ="${item.getPrice()}"> <br th:text ="${item.getDescription()}"></p>
+    <button ng-click="BuyingMessage(item.price, item.quantity_on_stock)">Buy</button>
+    <p th:text ="${item.getQuantity_on_stock()}">in Stock</p>
+  </section>
 
-<section class="product-bar" ng-repeat="x in products">
-<img src="assets/images/item3.jpg" />
-<h2>macbook</h2>
-<p> $3000 <br></p>
-
-<p>Quantity: 1</p>
-</section>
-
-<section class="product-bar" ng-repeat="x in products">
-<img src="assets/images/item6.jpg" />
-<h2>gucci suitcase</h2>
-<p> $5000 <br></p>
-
-<p>Quantity: 1</p>
-</section>
 </div>
-
-
-<button ng-click="myFunc()" class="button Sortbutton">Place Order</button>
-
-
 </body>
 </html>

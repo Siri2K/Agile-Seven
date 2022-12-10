@@ -4,7 +4,7 @@
 <!--Icon-->
 <link rel="icon" type="image/png" sizes="128x128" href="assets/images/logo.png">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/images/logo.png">
-<style>body{background:#6abadeba}h1{color:#000;text-align:center;font-family:Arial,cursive;font-size:12vh}.product-grid{display:grid;grid-auto-rows:300px;grid-template-columns:repeat(auto-fill,200px);grid-gap:20px;text-align:center}.product-bar img{height:100px;width:100%}.product-bar{position:relative;background:linear-gradient(45deg,#38a7bb,#38a7bb);cursor:pointer;border:1px solid white;overflow:hidden;height:300px}.button{background-color:#38a7bb;border:none;color:#000;padding:10px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;margin:2px;cursor:pointer}.Sortbutton{margin-left:1220px}.Cartbutton{margin-left:1820px}a{width:100%;line-height:2em;text-align:center;text-decoration:none;color:#000}.button:hover{background-color:#6abadeba}</style><link rel="stylesheet" href="styles.350ce9a459ed53d3.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.350ce9a459ed53d3.css"></noscript></head>
+<style>body{background:#6abadeba}h1{color:#000;text-align:center;font-family:Arial,cursive;font-size:12vh}.product-grid{display:grid;grid-auto-rows:300px;grid-template-columns:repeat(auto-fill,200px);grid-gap:20px;text-align:center}.product-bar img{height:100px;width:100%}.product-bar{position:relative;background:linear-gradient(45deg,#38a7bb,#38a7bb);cursor:pointer;border:1px solid white;overflow:hidden;height:300px}.button{background-color:#38a7bb;border:none;color:#000;padding:10px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;margin:2px;cursor:pointer}.Sortbutton{margin-left:750px}.Cartbutton{margin-left:1820px}a{width:100%;line-height:2em;text-align:center;text-decoration:none;color:#000}.button:hover{background-color:#6abadeba}</style><link rel="stylesheet" href="styles.8132f7159aca7ecc.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.8132f7159aca7ecc.css"></noscript></head>
 <body><button class="button Cartbutton"><a href="login_page.html"></a>Cart</button>
 
 
@@ -22,14 +22,24 @@
 <button onclick="th:href = '@{/price_desc}'" class="button">Sort by price (highest)</button>
 
 
-
+<p id="Warning"></p>
+<script>
+function Expensive()
+{
+  if (confirm("This Item is EXPENSIVE!\nAre you sure you want to buy this item?"));
+}
+function BuyingMessage(price, stock)
+{
+    if(price < 5000)
+    {
+      if (confirm("Are you sure you want to buy this item?"))stock--;
+    }
+    else if(confirm("This Item is expensive!\nAre you sure you want to buy this item?")) stock--;
+}
+</script>
 
 <h2 style="color:black;">Materials</h2>
 
-
-<script>
-  var numStockReserve;
-</script>
 
 <div class="product-grid">
 
@@ -37,29 +47,11 @@
     <img th:src="@{${'/' + item.getId()}}">
     <h2 th:text="${item.getName()}"></h2>
     <p th:text="${item.getPrice()}"> <br th:text="${item.getDescription()}"></p>
-
-    <script>
-      var numStockReserve = parseInt("${item.quantity_on_stock()}");
-    </script>
-    <input type="button" onclick="BuyingItem($item.getPrice())" value="Buy">
-
-    <p th:text="${item.getQuantity_on_stock(item.setQuantity_on_stock(numStockReserve))}">in Stock</p>
-
+    <button ng-click="BuyingMessage(item.price, item.quantity_on_stock)">Buy</button>
+    <p th:text="${item.getQuantity_on_stock()}">in Stock</p>
   </section>
 
-  <p id="Warning"></p>
-  <script type="text/javascript">
-    function BuyingItem(price) {
-      alert(price);
-      // if(price < 5000)
-      // {
-      //   if (confirm("Are you sure you want to buy this item?"))numStockReserve--;
-      // }
-      // else if(confirm("This Item is expensive!\nAre you sure you want to buy this item?")) numStockReserve--;
-    }
-  </script>
 </div>
-<script src="runtime.4ee665ecba5eef43.js" type="module"></script><script src="polyfills.ab099a83b9fb898a.js" type="module"></script><script src="main.0461f90d9a1c9ec0.js" type="module"></script>
-
+<script src="runtime.4ee665ecba5eef43.js" type="module"></script><script src="polyfills.ab099a83b9fb898a.js" type="module"></script><script src="main.5795e2bf74663f95.js" type="module"></script>
 
 </body></html>

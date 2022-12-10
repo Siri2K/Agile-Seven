@@ -16,11 +16,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OrdersRepository extends JpaRepository<Orders,Integer> 
 {
-    /* 
-    @Query(value = "SELECT * FROM orders h where h.created_date = :created_date", nativeQuery = true)
-    List<Orders> findAllByUserOrderByCreated_dateDesc(@Param("created_date") Users user);   
-    */
-
     @Query(value = "SELECT * FROM orders h where h.created_date = :created_date", nativeQuery = true)
     List<Orders> findByCreated_date(@Param("created_date") String date);   
 }

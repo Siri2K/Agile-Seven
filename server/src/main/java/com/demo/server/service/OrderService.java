@@ -17,7 +17,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -41,14 +40,6 @@ public class OrderService
         newOrder.setTotalPrice(newOrderItems.getPrice());
         ordersRepository.save(newOrder);
     }
-
-    /* 
-    public List<Orders> listOrders(@PathVariable("created_date") Users user)
-    {
-        return ordersRepository.findAllByUserOrderByCreated_dateDesc(user);
-        
-    }
-    */
 
     public Orders getOrder(Integer orderId)
     {

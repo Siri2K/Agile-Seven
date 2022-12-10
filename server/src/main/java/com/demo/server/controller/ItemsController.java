@@ -95,34 +95,5 @@ public class ItemsController
         Sort sort = Sort.by("price").descending();
         return itemsRepository.findAll(sort);
     }
-
-    /* 
-    @GetMapping("/name_asc")
-    public String listItemsByNameAsc(Model model)
-    {
-        // Choose Sort Location
-        Sort sort = Sort.by("name").ascending();
-        model.addAttribute("allItems", itemsRepository.findAll(sort));
-        return "index";
-    }
-
-    @GetMapping("/price_asc")
-    public String listItemsByPriceAsc(Model model)
-    {
-        // Choose Sort Location
-        Sort sort = Sort.by("name").ascending();
-        model.addAttribute("allItems", itemsRepository.findAll(sort));
-        return "index";
-    }
-
-    @GetMapping("/price_desc")
-    public String listItemsByPriceDesc(Model model)
-    {
-        // Choose Sort Location
-        Sort sort = Sort.by("name").descending();
-        model.addAttribute("allItems", itemsRepository.findAll(sort));
-        return "index";
-    }
-    */
     
 }
