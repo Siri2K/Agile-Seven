@@ -37,12 +37,14 @@
     <img th:src="@{${'/' + item.getId()}}">
     <h2 th:text="${item.getName()}"></h2>
     <p th:text="${item.getPrice()}"> <br th:text="${item.getDescription()}"></p>
+
     <script>
       var numStockReserve = parseInt("${item.quantity_on_stock()}");
     </script>
     <input type="button" onclick="BuyingItem($item.getPrice())" value="Buy">
 
     <p th:text="${item.getQuantity_on_stock(item.setQuantity_on_stock(numStockReserve))}">in Stock</p>
+
   </section>
 
   <p id="Warning"></p>
